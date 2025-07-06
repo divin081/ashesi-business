@@ -42,9 +42,9 @@ export default function HomePage() {
     fetchBusinesses()
   }, [])
 
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
+  //if (isLoading) {
+   // return <div>Loading...</div>
+  //}
 
   return (
     <div className="flex flex-col gap-16 pb-16">

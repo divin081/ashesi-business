@@ -260,7 +260,11 @@ export default function BusinessPage() {
                       achievements: business.achievements || "",
                       description: business.description,
                       image_url: business.image_url || "",
-                      social_media: business.social_media || {}
+                      social_media: {
+                        website: business.social_media?.website || '',
+                        instagram: business.social_media?.instagram || '',
+                        linkedin: business.social_media?.linkedin || ''
+                      }
                     })
                     setIsAddModalOpen(true)
                   }}

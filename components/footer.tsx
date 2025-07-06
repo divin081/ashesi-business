@@ -71,7 +71,7 @@ export default function Footer() {
             </li>
             <li>
               <Link href="mailto:info@ashesi.edu.gh" className="text-muted-foreground hover:text-foreground">
-                info@ashesi.edu.gh
+                ascenterpreneurship@ashesi.edu.gh
               </Link>
             </li>
           </ul>
