@@ -63,7 +63,7 @@ export default function BusinessPage() {
   })
 
   // Get unique categories for filter
-  const categories = ["all", ...new Set(businesses.map(business => business.category))]
+  const categories = ["all", ...new Set(businesses.map(business => business.category)), "Others"]
 
   const openBusinessModal = (business: Business) => {
     setSelectedBusiness(business)
@@ -514,6 +514,46 @@ const businesses = [
     twitter: "https://twitter.com/agritech",
     instagram: "https://instagram.com/agritech",
     linkedin: "https://linkedin.com/company/agritech"
+  },
+  {
+    id: 10,
+    name: "Creative Studios",
+    description: "Digital content creation and multimedia production studio. We specialize in creating engaging content for brands, including video production, graphic design, and social media management. Our team of creative professionals helps businesses tell their stories through compelling visual content.",
+    image: "/placeholder.svg?height=400&width=600",
+    category: "Others",
+    year: "2023",
+    founder: "Yaa Asantewaa, BBA '23",
+    education: "Bachelor of Business Administration, Ashesi University",
+    location: "Accra, Ghana",
+    founded: "February 2023",
+    stage: "Early Stage",
+    teamSize: "4 employees",
+    achievements: "Worked with 20+ clients, Featured in Ghana Creative Awards",
+    website: "https://example.com/creativestudios",
+    facebook: "https://facebook.com/creativestudios",
+    twitter: "https://twitter.com/creativestudios",
+    instagram: "https://instagram.com/creativestudios",
+    linkedin: "https://linkedin.com/company/creativestudios"
+  },
+  {
+    id: 11,
+    name: "PetCare Plus",
+    description: "Comprehensive pet care services including grooming, veterinary care, and pet supplies. We provide mobile pet care services and operate a pet-friendly cafe where owners can enjoy quality time with their pets. Our services include pet sitting, training, and emergency care.",
+    image: "/placeholder.svg?height=400&width=600",
+    category: "Others",
+    year: "2022",
+    founder: "Kwesi Owusu, BBA '22",
+    education: "Bachelor of Business Administration, Ashesi University",
+    location: "Accra, Ghana",
+    founded: "November 2022",
+    stage: "Early Stage",
+    teamSize: "6 employees",
+    achievements: "Served 500+ pets, Partnered with local veterinarians",
+    website: "https://example.com/petcareplus",
+    facebook: "https://facebook.com/petcareplus",
+    twitter: "https://twitter.com/petcareplus",
+    instagram: "https://instagram.com/petcareplus",
+    linkedin: "https://linkedin.com/company/petcareplus"
   }
 ]
 

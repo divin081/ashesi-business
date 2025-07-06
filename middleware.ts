@@ -12,17 +12,17 @@ export async function middleware(req: NextRequest) {
   console.log('Middleware - Session exists:', !!session);
 
   // If user is not signed in and the current path is an admin route
-  if (!session && req.nextUrl.pathname.startsWith('/admin') && !req.nextUrl.pathname.startsWith('/admin/login')) {
-    console.log('Middleware - Redirecting to login');
+  if (!session && req.nextUrl.pathname.startsWith('/admin') && !req.nextUrl.pathname.startsWith('/admin/auth')) {
+    console.log('Middleware - Redirecting to auth');
     const redirectUrl = req.nextUrl.clone();
-    redirectUrl.pathname = '/admin/login';
+    redirectUrl.pathname = '/admin/auth';
     redirectUrl.searchParams.set(`redirectedFrom`, req.nextUrl.pathname);
     return NextResponse.redirect(redirectUrl);
   }
 
-  // If user is signed in and trying to access login page
-  if (session && req.nextUrl.pathname === '/admin/login') {
-    console.log('Middleware - Redirecting to admin');
+  // If user is signed in and trying to access auth page
+  if (session && req.nextUrl.pathname === '/admin/auth') {
+    console.log('Middleware - Redirecting to admin dashboard');
     const redirectUrl = req.nextUrl.clone();
     redirectUrl.pathname = '/admin/dashboard';
     return NextResponse.redirect(redirectUrl);

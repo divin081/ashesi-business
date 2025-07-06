@@ -14,12 +14,14 @@ interface GalleryImage {
   id: string
   url: string
   caption: string
+  Height: number
   created_at: string
 }
 
 interface FormData {
   url: string
   caption: string
+  Height: number
 }
 
 export default function GalleryPage() {
@@ -31,7 +33,8 @@ export default function GalleryPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [formData, setFormData] = useState<FormData>({
     url: '',
-    caption: ''
+    caption: '',
+    Height: 300,
   })
 
   const fetchImages = async () => {
@@ -65,6 +68,7 @@ export default function GalleryPage() {
       const imageData = {
         url: formData.url,
         caption: formData.caption,
+        Height: formData.Height,
         updated_at: new Date().toISOString()
       }
 
@@ -123,7 +127,8 @@ export default function GalleryPage() {
   function resetForm() {
     setFormData({
       url: '',
-      caption: ''
+      caption: '',
+      Height: 300,
     })
   }
 
@@ -174,7 +179,8 @@ export default function GalleryPage() {
                       setSelectedImage(image);
                       setFormData({
                         url: image.url,
-                        caption: image.caption
+                        caption: image.caption,
+                        Height: image.Height || 300
                       });
                       setIsAddModalOpen(true);
                     }}
@@ -233,6 +239,18 @@ export default function GalleryPage() {
                   id="caption"
                   value={formData.caption}
                   onChange={(e) => setFormData({ ...formData, caption: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="Height">Height (px)</Label>
+                <Input
+                  id="Height"
+                  type="number"
+                  min="100"
+                  max="1000"
+                  value={formData.Height}
+                  onChange={(e) => setFormData({ ...formData, Height: Number(e.target.value) })}
                   required
                 />
               </div>

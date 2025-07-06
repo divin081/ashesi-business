@@ -12,16 +12,15 @@ export default function TestimonialSection() {
           <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Testimonials</div>
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Student Business Success Stories</h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            Hear from students, alumni, and employers about the impact of Ashesi's entrepreneurship ecosystem.
+            Hear from students, and alumni about the impact of Ashesi's entrepreneurship ecosystem.
           </p>
         </div>
       </div>
 
       <Tabs defaultValue="students" className="w-full mt-8">
-        <TabsList className="grid w-full max-w-md grid-cols-3 mx-auto">
+        <TabsList className="grid w-full max-w-md grid-cols-2 mx-auto">
           <TabsTrigger value="students">Students</TabsTrigger>
           <TabsTrigger value="alumni">Alumni</TabsTrigger>
-          <TabsTrigger value="employers">Employers</TabsTrigger>
         </TabsList>
 
         <TabsContent value="students" className="mt-8">
@@ -82,34 +81,7 @@ export default function TestimonialSection() {
           </div>
         </TabsContent>
 
-        <TabsContent value="employers" className="mt-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {employerTestimonials.map((testimonial, index) => (
-              <Card key={index} className="backdrop-blur-lg bg-white/80 dark:bg-gray-950/80 border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-full overflow-hidden h-12 w-12">
-                        <Image
-                          src="/placeholder.svg?height=100&width=100"
-                          alt={testimonial.name}
-                          width={100}
-                          height={100}
-                          className="object-cover"
-                        />
-                      </div>
-                      <div>
-                        <h4 className="text-base font-semibold">{testimonial.name}</h4>
-                        <p className="text-sm text-muted-foreground">{testimonial.company}</p>
-                      </div>
-                    </div>
-                    <p className="text-sm italic">"{testimonial.quote}"</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </TabsContent>
+       
       </Tabs>
     </section>
   )
@@ -154,27 +126,6 @@ const alumniTestimonials = [
     position: "Founder, EduTech Solutions",
     quote:
       "I started my educational technology company right after graduation with support from the Ashesi Entrepreneurship Committee. The seed funding and business development workshops were instrumental in helping me validate my idea and build a viable product. Now, EduTech Solutions serves over 20 schools across Ghana.",
-  },
-]
-
-const employerTestimonials = [
-  {
-    name: "Dr. James Kwarteng",
-    company: "CEO, Horizon Innovations",
-    quote:
-      "We've partnered with several Ashesi student startups through our accelerator program, and we're consistently impressed by their innovative solutions and entrepreneurial mindset. The Ashesi Entrepreneur Centre's focus on practical business skills produces graduates who can hit the ground running.",
-  },
-  {
-    name: "Sarah Mensah",
-    company: "Investment Director, African Tech Ventures",
-    quote:
-      "As an investor, I've seen firsthand the quality of ventures coming out of Ashesi's entrepreneurship ecosystem. The student businesses we've funded demonstrate strong market understanding, ethical leadership, and scalability potential. The university's support system for entrepreneurs is truly exceptional.",
-  },
-  {
-    name: "Robert Ansah",
-    company: "Managing Partner, Ansah Consulting",
-    quote:
-      "We've mentored several Ashesi student entrepreneurs through the Entrepreneurship Committee's mentorship program. Their ability to identify market opportunities and develop innovative solutions is remarkable. The university's commitment to supporting student businesses creates a pipeline of promising ventures for investors like us.",
   },
 ]
 
