@@ -79,7 +79,7 @@ export default function Footer() {
       </div>
       <div className="border-t">
         <div className="container flex flex-col gap-2 px-4 py-6 text-center text-sm text-muted-foreground md:px-6 md:flex-row md:justify-between">
-          <p>© {new Date().getFullYear()} Ashesi Business, MiddlePoet Inc. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Ashesi Business. Powered by Divine. All rights reserved.</p>
           <p className="md:text-right">
             <Link href="#" className="underline underline-offset-4 hover:text-foreground">
               Privacy Policy
