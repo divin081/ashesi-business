@@ -49,7 +49,7 @@ export default function AdminLayout({
   // Handle redirect in separate useEffect
   useEffect(() => {
     if (shouldRedirect) {
-      console.log('Redirecting to /admin/auth')
+      //console.log('Redirecting to /admin/auth')
       router.push("/admin/auth")
       setShouldRedirect(false)
     }
@@ -66,13 +66,13 @@ export default function AdminLayout({
 
   // If on auth page, don't show navigation
   if (pathname === "/admin/auth") {
-    console.log('On auth page, showing login form')
+    //console.log('On auth page, showing login form')
     return <>{children}</>
   }
 
   // If not authenticated, show loading while redirecting
   if (!isAuthenticated) {
-    console.log('Not authenticated, showing redirect message')
+    //console.log('Not authenticated, showing redirect message')
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-lg">Redirecting to login...</div>
@@ -80,7 +80,7 @@ export default function AdminLayout({
     )
   }
 
-  console.log('Showing admin layout with navigation')
+  //console.log('Showing admin layout with navigation')
   return (
     <div className="flex min-h-screen">
       <AdminNavigation />

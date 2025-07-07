@@ -36,31 +36,31 @@ export default function LoginPage() {
     e.preventDefault();
     if (loading) return;
     
-    console.log('Login attempt with email:', email);
+    //console.log('Login attempt with email:', email);
     setLoading(true);
 
     try {
-      console.log('Attempting Supabase login...');
+      //console.log('Attempting Supabase login...');
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-      console.log('Supabase response:', { data, error });
+      //console.log('Supabase response:', { data, error });
 
       if (error) {
-        console.error('Login error:', error);
+        //console.error('Login error:', error);
         toast.error(error.message);
       } else if (data?.session) {
-        console.log('Login successful, session:', data.session);
+        //console.log('Login successful, session:', data.session);
         toast.success('Logged in successfully!');
         router.replace(redirectedFrom || '/admin/dashboard');
       } else {
-        console.error('No session received');
+        //console.error('No session received');
         toast.error('Login failed: No session received');
       }
     } catch (error) {
-      console.error('Login exception:', error);
+      //console.error('Login exception:', error);
       toast.error('An error occurred during login');
     } finally {
       setLoading(false);

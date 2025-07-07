@@ -43,7 +43,8 @@ create table gallery_images (
   url text not null,
   caption text not null,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null,
-  updated_at timestamp with time zone default timezone('utc'::text, now()) not null
+  updated_at timestamp with time zone default timezone('utc'::text, now()) not null,
+  Height int not null
 );
 
 comment on table gallery_images is 'Gallery images of student businesses';
@@ -200,24 +201,4 @@ create policy "Only authenticated users can delete settings"
 
 -- Create Helper Functions
 
--- Filter Businesses by Year
-create or replace function filter_businesses_by_year(year_filter text)
-returns setof businesses
-language sql
-as $$
-  select *
-  from businesses
-  where year = year_filter
-  order by created_at desc;
-$$;
 
--- Filter Committee Members by Year
-create or replace function filter_committee_members_by_year(year_filter text)
-returns setof committee_members
-language sql
-as $$
-  select *
-  from committee_members
-  where extract(year from created_at)::text = year_filter
-  order by created_at desc;
-$$; 

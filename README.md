@@ -28,7 +28,7 @@ A web application to showcase student businesses at Ashesi University.
 
 2. Install dependencies:
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. Set up Supabase:
