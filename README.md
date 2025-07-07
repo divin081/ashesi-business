@@ -47,7 +47,7 @@ A web application to showcase student businesses at Ashesi University.
 
 5. Run the development server:
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 6. Open [http://localhost:3000](http://localhost:3000) in your browser.
