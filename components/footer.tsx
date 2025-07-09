@@ -10,7 +10,7 @@ export default function Footer() {
           <p className="text-sm text-muted-foreground">
             Empowering future business leaders in Africa through education, innovation, and ethical leadership.
           </p>
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 items-center">
             <Link href="#" className="text-muted-foreground hover:text-foreground">
               <Facebook className="h-5 w-5" />
               <span className="sr-only">Facebook</span>
@@ -30,29 +30,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="space-y-4 flex flex-col items-center">
-          <h3 className="text-lg font-medium">Navigation</h3>
-          <ul className="space-y-2 text-sm flex flex-col items-center">
-            <li>
-              <Link href="/" className="text-muted-foreground hover:text-foreground">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href="/business" className="text-muted-foreground hover:text-foreground">
-                Businesses
-              </Link>
-            </li>
-            <li>
-              <Link href="/gallery" className="text-muted-foreground hover:text-foreground">
-                Gallery
-              </Link>
-            </li>
-            <li>
-              <Link href="/committee" className="text-muted-foreground hover:text-foreground">
-                Committee
-              </Link>
-            </li>
-          </ul>
+          
+          
         </div>
         <div id="contact" className="space-y-4">
           <h3 className="text-lg font-medium">Contact Us</h3>
@@ -78,17 +57,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t">
-        <div className="container flex flex-col gap-2 px-4 py-6 text-center text-sm text-muted-foreground md:px-6 md:flex-row md:justify-between">
-          <p>© {new Date().getFullYear()} Ashesi Business. Powered by Divine. All rights reserved.</p>
-          <p className="md:text-right">
-            <Link href="#" className="underline underline-offset-4 hover:text-foreground">
-              Privacy Policy
-            </Link>{" "}
-            |{" "}
-            <Link href="#" className="underline underline-offset-4 hover:text-foreground">
-              Terms of Service
-            </Link>
-          </p>
+        <div className="container flex flex-col items-center justify-center gap-2 px-4 py-6 text-center text-sm text-muted-foreground md:px-6">
+          <p>© {new Date().getFullYear()} Ashesi Enterpreneurship Committee. Powered by Divine.</p>
         </div>
       </div>
     </footer>
