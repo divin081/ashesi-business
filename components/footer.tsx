@@ -5,12 +5,12 @@ export default function Footer() {
   return (
     <footer className="w-full border-t bg-muted/50">
       <div className="container grid gap-8 px-4 py-10 md:px-6 md:grid-cols-3">
-        <div className="space-y-4">
+        <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4">
           <h3 className="text-lg font-medium">Ashesi Business</h3>
           <p className="text-sm text-muted-foreground">
             Empowering future business leaders in Africa through education, innovation, and ethical leadership.
           </p>
-          <div className="flex space-x-4 items-center">
+          <div className="flex space-x-3 mt-1">
             <Link href="#" className="text-muted-foreground hover:text-foreground">
               <Facebook className="h-5 w-5" />
               <span className="sr-only">Facebook</span>
@@ -33,7 +33,7 @@ export default function Footer() {
           
           
         </div>
-        <div id="contact" className="space-y-4">
+        <div id="contact" className="flex flex-col items-center md:items-end text-center md:text-right gap-2">
           <h3 className="text-lg font-medium">Contact Us</h3>
           <ul className="space-y-2 text-sm">
             <li className="text-muted-foreground">
@@ -49,7 +49,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="mailto:info@ashesi.edu.gh" className="text-muted-foreground hover:text-foreground">
+              <Link href="mailto:ascenterpreneurship@ashesi.edu.gh" className="text-muted-foreground hover:text-foreground">
                 ascenterpreneurship@ashesi.edu.gh
               </Link>
             </li>
