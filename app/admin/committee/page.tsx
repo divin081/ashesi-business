@@ -130,6 +130,17 @@ export default function CommitteePage() {
     })
   }
 
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg">Loading...</div>
+        </div>
+      </div>
+    )
+  }
+
+
   return (
     <div className="space-y-4 p-8 pt-6">
       <div className="flex items-center justify-between">

@@ -223,6 +223,16 @@ export default function BusinessPage() {
     }))
   }
 
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg">Loading...</div>
+        </div>
+      </div>
+    )
+  }
+
   const categories = ["Sustainability", "Education", "Agriculture", "Healthcare", "E-commerce", "Energy"]
   const years = ["2022", "2023", "2024", "2025"]
   const stages = ["Idea", "Early Stage", "Growth", "Mature"]
@@ -373,12 +383,22 @@ export default function BusinessPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="stage">Business Stage</Label>
-                <Input
-                  id="stage"
+                <Select
                   value={formData.stage}
-                  onChange={(e) => setFormData({ ...formData, stage: e.target.value })}
+                  onValueChange={(value) => setFormData({ ...formData, stage: value })}
                   required
-                />
+                >
+                  <SelectTrigger id="stage">
+                    <SelectValue placeholder="Select stage" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {stages.map((stage) => (
+                      <SelectItem key={stage} value={stage}>
+                        {stage}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="team_size">Team Size</Label>

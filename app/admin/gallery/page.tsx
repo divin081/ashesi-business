@@ -133,7 +133,13 @@ export default function GalleryPage() {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg">Loading...</div>
+        </div>
+      </div>
+    )
   }
 
   return (

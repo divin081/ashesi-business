@@ -26,7 +26,7 @@ export default function LoginPage() {
       const { data: { session } } = await supabase.auth.getSession();
       
       if (session) {
-        router.replace(redirectedFrom || '/admin/dashboard');
+        router.replace('/admin/dashboard');
       }
     };
     checkSession();
@@ -54,7 +54,7 @@ export default function LoginPage() {
       } else if (data?.session) {
         //console.log('Login successful, session:', data.session);
         toast.success('Logged in successfully!');
-        router.replace(redirectedFrom || '/admin/dashboard');
+        router.replace('/admin/dashboard');
       } else {
         //console.error('No session received');
         toast.error('Login failed: No session received');
@@ -105,7 +105,12 @@ export default function LoginPage() {
             {loading ? 'Logging in...' : 'Login'}
           </Button>
         </form>
+        <div className="mt-6 flex justify-center">
+          <a href="/" className="text-primary underline text-base font-medium">← Back to Home</a>
+        </div>
       </Card>
+
+      
     </div>
   );
 } 
