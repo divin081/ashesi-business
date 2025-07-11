@@ -36,7 +36,7 @@ export function AdminNavigation() {
   }
 
   return (
-    <div className="flex h-screen w-64 flex-col border-r bg-background px-4">
+    <div className="flex h-screen w-40 sm:w-64 flex-col border-r bg-background px-4">
       {/* Header with logo/title */}
       <div className="flex h-16 items-center border-b mb-2">
         <Link href="/admin/dashboard" className="flex items-center gap-2">
