@@ -63,7 +63,7 @@ export default function CommitteePage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
         {members.map((member) => (
-          <div key={member.id} className="group relative aspect-[4/5] overflow-hidden rounded-lg">
+          <div key={member.id} className="group relative aspect-[4/5] overflow-hidden rounded-lg max-w-[220px] mx-auto w-full md:max-w-none md:mx-0">
             {/* Front side - Black and white image */}
             <div className="absolute inset-0 transition-transform duration-700 group-hover:[transform:rotateY(180deg)]">
               <div className="h-full w-full">

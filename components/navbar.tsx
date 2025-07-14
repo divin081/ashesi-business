@@ -62,6 +62,7 @@ export default function Navbar() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+            <SheetTitle className="sr-only">Main Menu</SheetTitle>
             <div className="flex flex-col gap-6 py-6">
               <Link href="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-1">
