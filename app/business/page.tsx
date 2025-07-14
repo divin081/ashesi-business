@@ -135,14 +135,14 @@ export default function BusinessPage() {
             <p className="text-lg text-gray-600">No businesses found matching your criteria</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {filteredBusinesses.map((business) => (
               <Card
                 key={business.id} 
                 className="overflow-hidden backdrop-blur-lg bg-white/80 dark:bg-gray-950/80 border-0 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
                 onClick={() => openBusinessModal(business)}
               >
-                <div className="aspect-video relative">
+                <div className="aspect-square relative">
                   <Image
                     src={business.image_url || '/placeholder.svg'}
                     alt={business.name}
@@ -153,35 +153,35 @@ export default function BusinessPage() {
                     {business.category}
                   </Badge>
                 </div>
-                <CardHeader>
-                  <CardTitle>{business.name}</CardTitle>
+                <CardHeader className="p-3">
+                  <CardTitle className="text-sm">{business.name}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="mt-2 flex items-center gap-2">
-                    <Badge variant="outline">{business.year}</Badge>
-                    <Badge variant="outline">{business.founder}</Badge>
+                <CardContent className="p-3 pt-0">
+                  <div className="flex items-center gap-1">
+                    <Badge variant="outline" className="text-xs">{business.year}</Badge>
+                    <Badge variant="outline" className="text-xs">{business.founder}</Badge>
                   </div>
                 </CardContent>
-                <CardFooter className="flex justify-between">
-                  <div className="flex gap-2">
+                <CardFooter className="flex justify-between p-3 pt-0">
+                  <div className="flex gap-1">
                     {business.social_media?.website && (
                       <Link href={business.social_media.website} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <Globe className="h-4 w-4" />
+                        <Button variant="ghost" size="icon" className="h-6 w-6">
+                          <Globe className="h-3 w-3" />
                         </Button>
                       </Link>
                     )}
                     {business.social_media?.instagram && (
                       <Link href={business.social_media.instagram} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <Instagram className="h-4 w-4" />
+                        <Button variant="ghost" size="icon" className="h-6 w-6">
+                          <Instagram className="h-3 w-3" />
                         </Button>
                       </Link>
                     )}
                     {business.social_media?.linkedin && (
                       <Link href={business.social_media.linkedin} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <Linkedin className="h-4 w-4" />
+                        <Button variant="ghost" size="icon" className="h-6 w-6">
+                          <Linkedin className="h-3 w-3" />
                         </Button>
                       </Link>
                     )}
