@@ -51,13 +51,11 @@ export default function GalleryPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="text-center">
         <span className="inline-block px-4 py-2 bg-gray-50 rounded-full text-gray-900 text-sm font-medium mb-4">
-          Student Businesses
+            Gallery Album
         </span>
-        <h1 className="text-4xl sm:text-5xl md:text-[64px] font-bold leading-tight mb-6">
-          Discover Ashesi Student Ventures
-        </h1>
+        
         <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-16">
-        Explore our collection of memorable moments and achievements at Ashesi University
+        Browse through our collection of innovative products and services created by Ashesi student entrepreneurs
         </p>
       </div>
 

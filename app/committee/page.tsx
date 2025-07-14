@@ -49,11 +49,11 @@ export default function CommitteePage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="text-center">
-        <span className="inline-block px-4 py-2 bg-gray-50 rounded-full text-gray-900 text-sm font-medium mb-4">
+      <div className="text-center space y-2">
+        <span className="inline-block rounded-lg bg-muted px-3 py-1 text-sm mb-2">
           Committee Members
         </span>
-        <h1 className="text-[64px] font-bold leading-tight mb-6">
+        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-2">
           Meet Our Team
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-16">
@@ -61,9 +61,9 @@ export default function CommitteePage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
         {members.map((member) => (
-          <div key={member.id} className="group relative aspect-[3/4] overflow-hidden rounded-lg">
+          <div key={member.id} className="group relative aspect-[4/5] overflow-hidden rounded-lg">
             {/* Front side - Black and white image */}
             <div className="absolute inset-0 transition-transform duration-700 group-hover:[transform:rotateY(180deg)]">
               <div className="h-full w-full">
