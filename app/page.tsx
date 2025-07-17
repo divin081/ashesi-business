@@ -62,13 +62,13 @@ export default function HomePage() {
               The Ashesi Entrepreneur Centre and Entrepreneurship Committee work together to nurture student businesses through comprehensive support including seed funding, mentorship from industry experts, business development workshops, and networking opportunities. Our ecosystem has helped launch over 50 student ventures, with many receiving additional funding from external investors.
             </p>
           </div>
-          <div className="relative aspect-video overflow-hidden rounded-xl">
+          <div className="relative aspect-video overflow-hidden rounded-xl p-6">
             <Image
               src="/ashesilogo.webp"
-              width={1280}
-              height={720}
+              fill
               alt="Ashesi Entrepreneur Centre"
-              className="object-cover"
+              priority
+              className="object-contain"
             />
           </div>
         </div>
@@ -105,17 +105,16 @@ export default function HomePage() {
               <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Join our growing ecosystem of student entrepreneurs and access funding, mentorship, and resources to help your business thrive.
               </p>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
+              <div className="flex flex-col gap-2 min-[400px]:flex-row ">
                 <Button size="lg">Register Now</Button>
               </div>
             </div>
-            <div className="relative aspect-video overflow-hidden rounded-xl">
+            <div className="relative aspect-video overflow-hidden rounded-xl p-1">
               <Image
-                src="/ashesilogo.webp"
-                width={1280}
-                height={720}
+                src="/ASC-LOGO.webp"
+                fill
                 alt="Ashesi Student Entrepreneurs"
-                className="object-cover w-full h-full absolute inset-0"
+                className="object-contain absolute inset-0"
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

@@ -31,6 +31,7 @@ export default function BusinessCarousel({ businesses }: { businesses: Business[
     <section className="py-16 px-4 md:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 text-center">
+        <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm mb-2">Business</div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Businesses</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Discover innovative ventures created by Ashesi's brightest entrepreneurs

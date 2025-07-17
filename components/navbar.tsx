@@ -32,7 +32,7 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between px-8 rounded-full bg-white shadow-sm">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex items-center gap-1">
-            <Image src="/ashesilogo.webp" alt="Ashesi Logo" width={32} height={32} className="object-contain" />
+            <Image src="/ASC-LOGO.webp" alt="Ashesi Logo" width={60} height={60} className="object-contain" />
             <span className="text-xl font-bold">Business</span>
           </div>
         </Link>
