@@ -58,7 +58,7 @@ export default function Footer() {
       </div>
       <div className="border-t">
         <div className="container flex flex-col items-center justify-center gap-2 px-4 py-6 text-center text-sm text-muted-foreground md:px-6">
-          <p>© {new Date().getFullYear()}, Ashesi Enterpreneurship Committee. Powered by <span><a href="https://portfolio-coa6.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline hover:text-black transition-colors">Divine</a></span> </p>
+          <p>© {new Date().getFullYear()}, Ashesi Enterpreneurship Committee. Powered by <span><a href="https://portfolio-five-ecru-71.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline hover:text-black transition-colors">Divine</a></span> </p>
         </div>
       </div>
     </footer>

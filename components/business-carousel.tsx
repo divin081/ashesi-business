@@ -52,7 +52,7 @@ export default function BusinessCarousel({ businesses }: { businesses: Business[
                 <CardContent className="p-6">
                   <div className="aspect-[16/9] relative overflow-hidden rounded-lg mb-6">
                     <Image
-                      src={business.image_url}
+                      src={business.image_url ?? "/placeholder.png"}
                       alt={business.name}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
