@@ -18,9 +18,8 @@ export default function TestimonialSection() {
       </div>
 
       <Tabs defaultValue="students" className="w-full mt-8">
-        <TabsList className="grid w-full max-w-md grid-cols-2 mx-auto">
+        <TabsList className="grid w-full max-w-sm grid-cols-1 mx-auto">
           <TabsTrigger value="students">Students</TabsTrigger>
-          <TabsTrigger value="alumni">Alumni</TabsTrigger>
         </TabsList>
 
         <TabsContent value="students" className="mt-8">
@@ -52,34 +51,6 @@ export default function TestimonialSection() {
           </div>
         </TabsContent>
 
-        <TabsContent value="alumni" className="mt-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {alumniTestimonials.map((testimonial, index) => (
-              <Card key={index} className="backdrop-blur-lg bg-white/80 dark:bg-gray-950/80 border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-full overflow-hidden h-12 w-12">
-                        <Image
-                          src="/placeholder.svg?height=100&width=100"
-                          alt={testimonial.name}
-                          width={100}
-                          height={100}
-                          className="object-cover"
-                        />
-                      </div>
-                      <div>
-                        <h4 className="text-base font-semibold">{testimonial.name}</h4>
-                        <p className="text-sm text-muted-foreground">{testimonial.position}</p>
-                      </div>
-                    </div>
-                    <p className="text-sm italic">"{testimonial.quote}"</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </TabsContent>
 
        
       </Tabs>
@@ -108,24 +79,4 @@ const studentTestimonials = [
   },
 ]
 
-const alumniTestimonials = [
-  {
-    name: "Grace Ayew",
-    position: "Founder & CEO, TechStart Ghana",
-    quote:
-      "My journey as an entrepreneur began at Ashesi when I participated in the Venture Incubator program. The seed funding and mentorship I received were crucial in launching my tech company. Today, TechStart Ghana has raised over $500,000 in venture capital and employs 15 people, including 5 Ashesi graduates.",
-  },
-  {
-    name: "Emmanuel Boateng",
-    position: "Founder & CEO, EcoVentures",
-    quote:
-      "The Ashesi Entrepreneur Centre provided the foundation for my sustainable business. Their mentorship program connected me with industry leaders who guided me through the challenges of starting a green technology company. The skills and network I developed at Ashesi continue to benefit my business today.",
-  },
-  {
-    name: "Fatima Ibrahim",
-    position: "Founder, EduTech Solutions",
-    quote:
-      "I started my educational technology company right after graduation with support from the Ashesi Entrepreneurship Committee. The seed funding and business development workshops were instrumental in helping me validate my idea and build a viable product. Now, EduTech Solutions serves over 20 schools across Ghana.",
-  },
-]
 

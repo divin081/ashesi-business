@@ -51,3 +51,16 @@ export interface GalleryImage {
   caption?: string
   created_at: string
 } 
+
+export interface Post {
+  id: string
+  title: string
+  slug: string
+  excerpt?: string
+  content: string
+  cover_image_url?: string
+  author?: string
+  published: boolean
+  published_at?: string
+  created_at: string
+}

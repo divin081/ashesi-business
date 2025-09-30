@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { LayoutDashboard, Image, Settings, LogOut, Users } from "lucide-react"
+import { LayoutDashboard, Image, Settings, LogOut, Users, BookOpen } from "lucide-react"
 import { createClient } from "@/lib/supabase"
 
 const navigation = [
@@ -22,6 +22,11 @@ const navigation = [
     name: "Committee",
     href: "/admin/committee",
     icon: Users
+  },
+  {
+    name: "Blog",
+    href: "/admin/blog",
+    icon: BookOpen
   }
 ]
 

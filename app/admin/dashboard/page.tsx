@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Building2, Image, Users, TrendingUp, Calendar, Award } from "lucide-react"
+import { Building2, Image, Users, BookOpen, Calendar, Award } from "lucide-react"
 import { createClient } from '@/lib/supabase'
 import Link from "next/link"
 
@@ -11,6 +11,7 @@ interface DashboardStats {
   committeeMembers: number
   galleryImages: number
   recentBusinesses: number
+  publishedPosts: number
 }
 
 export default function DashboardPage() {
@@ -19,7 +20,8 @@ export default function DashboardPage() {
     businesses: 0,
     committeeMembers: 0,
     galleryImages: 0,
-    recentBusinesses: 0
+    recentBusinesses: 0,
+    publishedPosts: 0
   })
   const [isLoading, setIsLoading] = useState(true)
 
@@ -52,11 +54,18 @@ export default function DashboardPage() {
           .select('*', { count: 'exact', head: true })
           .gte('created_at', thirtyDaysAgo.toISOString())
 
+        // Fetch published posts count
+        const { count: publishedPostsCount } = await supabase
+          .from('posts')
+          .select('*', { count: 'exact', head: true })
+          .eq('published', true)
+
         setStats({
           businesses: businessesCount || 0,
           committeeMembers: committeeCount || 0,
           galleryImages: galleryCount || 0,
-          recentBusinesses: recentBusinessesCount || 0
+          recentBusinesses: recentBusinessesCount || 0,
+          publishedPosts: publishedPostsCount || 0
         })
       } catch (error) {
         console.error('Error fetching dashboard stats:', error)
@@ -126,15 +135,15 @@ export default function DashboardPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Growth Rate</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Published Posts</CardTitle>
+            <BookOpen className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {isLoading ? "..." : stats.businesses > 0 ? "+" + Math.round((stats.recentBusinesses / stats.businesses) * 100) : "0"}%
+              {isLoading ? "..." : stats.publishedPosts}
             </div>
             <p className="text-xs text-muted-foreground">
-              Monthly growth
+              Visible on the public blog
             </p>
           </CardContent>
         </Card>

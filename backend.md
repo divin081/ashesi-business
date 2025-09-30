@@ -78,6 +78,26 @@ create table settings (
 comment on table settings is 'Admin settings for the application';
 ```
 
+### Posts
+
+```sql
+create table posts (
+  id uuid default uuid_generate_v4() primary key,
+  title text not null,
+  slug text not null unique,
+  excerpt text,
+  content text not null,
+  cover_image_url text,
+  author text,
+  published boolean default false,
+  published_at timestamp with time zone,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+  updated_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+comment on table posts is 'Blog posts for the website';
+```
+
 ## Storage Buckets
 
 ### Business Images
@@ -233,6 +253,28 @@ create policy "Only authenticated users can update settings"
 
 create policy "Only authenticated users can delete settings"
   on settings for delete
+  using ( auth.role() = 'authenticated' );
+```
+
+### Posts
+
+```sql
+alter table posts enable row level security;
+
+create policy "Posts are viewable by everyone when published"
+  on posts for select
+  using ( published = true );
+
+create policy "Only authenticated users can insert posts"
+  on posts for insert
+  with check ( auth.role() = 'authenticated' );
+
+create policy "Only authenticated users can update posts"
+  on posts for update
+  using ( auth.role() = 'authenticated' );
+
+create policy "Only authenticated users can delete posts"
+  on posts for delete
   using ( auth.role() = 'authenticated' );
 ```
 
