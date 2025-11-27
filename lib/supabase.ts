@@ -20,6 +20,8 @@ export interface Business {
   category: string
   year: number
   founder: string
+  phone?: string
+  email?: string
   education: string
   location: string
   founded: string

@@ -18,6 +18,8 @@ interface FormData {
   category: string
   year: string
   founder: string
+  phone: string
+  email: string
   education: string
   location: string
   founded: string
@@ -43,6 +45,8 @@ export default function BusinessPage() {
     category: '',
     year: '',
     founder: '',
+    phone: '',
+    email: '',
     education: '',
     location: '',
     founded: '',
@@ -96,6 +100,8 @@ export default function BusinessPage() {
             category: formData.category,
             year: formData.year,
             founder: formData.founder,
+            phone: formData.phone,
+            email: formData.email,
             education: formData.education,
             location: formData.location,
             founded: formData.founded,
@@ -124,6 +130,8 @@ export default function BusinessPage() {
             category: formData.category,
             year: formData.year,
             founder: formData.founder,
+            phone: formData.phone,
+            email: formData.email,
             education: formData.education,
             location: formData.location,
             founded: formData.founded,
@@ -181,6 +189,8 @@ export default function BusinessPage() {
       category: "",
       year: "",
       founder: "",
+      phone: "",
+      email: "",
       education: "",
       location: "",
       founded: "",
@@ -262,6 +272,8 @@ export default function BusinessPage() {
                       category: business.category,
                       year: business.year.toString(),
                       founder: business.founder,
+                      phone: business.phone || "",
+                      email: business.email || "",
                       education: business.education || "",
                       location: business.location || "",
                       founded: business.founded || "",
@@ -336,7 +348,7 @@ export default function BusinessPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="year">Year</Label>
+                <Label htmlFor="year">Year Group</Label>
                 <Input
                   id="year"
                   type="number"
@@ -355,12 +367,29 @@ export default function BusinessPage() {
                 />
               </div>
               <div className="space-y-2">
+                <Label htmlFor="phone">Phone Number</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                />
+              </div>
+              <div className="space-y-2">
                 <Label htmlFor="education">Education</Label>
                 <Input
                   id="education"
                   value={formData.education}
                   onChange={(e) => setFormData({ ...formData, education: e.target.value })}
-                  required
                 />
               </div>
               <div className="space-y-2">
@@ -369,7 +398,6 @@ export default function BusinessPage() {
                   id="location"
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  required
                 />
               </div>
               <div className="space-y-2">
@@ -378,7 +406,6 @@ export default function BusinessPage() {
                   id="founded"
                   value={formData.founded}
                   onChange={(e) => setFormData({ ...formData, founded: e.target.value })}
-                  required
                 />
               </div>
               <div className="space-y-2">
@@ -386,7 +413,6 @@ export default function BusinessPage() {
                 <Select
                   value={formData.stage}
                   onValueChange={(value) => setFormData({ ...formData, stage: value })}
-                  required
                 >
                   <SelectTrigger id="stage">
                     <SelectValue placeholder="Select stage" />
@@ -406,7 +432,6 @@ export default function BusinessPage() {
                   id="team_size"
                   value={formData.team_size}
                   onChange={(e) => setFormData({ ...formData, team_size: e.target.value })}
-                  required
                 />
               </div>
               <div className="space-y-2">
@@ -415,7 +440,6 @@ export default function BusinessPage() {
                   id="achievements"
                   value={formData.achievements}
                   onChange={(e) => setFormData({ ...formData, achievements: e.target.value })}
-                  required
                 />
               </div>
               <div className="space-y-2">
@@ -425,7 +449,6 @@ export default function BusinessPage() {
                   type="url"
                   value={formData.image_url}
                   onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                  required
                 />
               </div>
             </div>
@@ -435,7 +458,6 @@ export default function BusinessPage() {
                 id="description"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                required
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

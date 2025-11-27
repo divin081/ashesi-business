@@ -8,7 +8,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Globe, Facebook, Twitter, Instagram, Linkedin, ExternalLink, X, MapPin, Calendar, GraduationCap, Briefcase, Users, Award, Search } from "lucide-react"
+import { Globe, Facebook, Twitter, Instagram, Linkedin, ExternalLink, X, MapPin, Calendar, GraduationCap, Briefcase, Users, Award, Search, Phone, Mail } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { createClient } from '@/lib/supabase'
 import { toast } from "sonner"
@@ -161,6 +161,7 @@ export default function BusinessPage() {
                     <Badge variant="outline" className="text-xs">{business.year}</Badge>
                     <Badge variant="outline" className="text-xs">{business.founder}</Badge>
                   </div>
+                  
                 </CardContent>
                 <CardFooter className="flex justify-between p-3 pt-0">
                   <div className="flex gap-1">
@@ -246,6 +247,36 @@ export default function BusinessPage() {
                         </h3>
                         <p>{selectedBusiness.location}</p>
                       </div>
+
+                      {selectedBusiness.phone && (
+                        <div className="space-y-2">
+                          <h3 className="font-semibold flex items-center gap-2">
+                            <Phone className="h-4 w-4" />
+                            Phone
+                          </h3>
+                          <a
+                            href={`tel:${selectedBusiness.phone}`}
+                            className="text-primary underline underline-offset-2"
+                          >
+                            {selectedBusiness.phone}
+                          </a>
+                        </div>
+                      )}
+
+                      {selectedBusiness.email && (
+                        <div className="space-y-2">
+                          <h3 className="font-semibold flex items-center gap-2">
+                            <Mail className="h-4 w-4" />
+                            Email
+                          </h3>
+                          <a
+                            href={`mailto:${selectedBusiness.email}`}
+                            className="text-primary underline underline-offset-2 break-all"
+                          >
+                            {selectedBusiness.email}
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                   
