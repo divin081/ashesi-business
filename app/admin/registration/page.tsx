@@ -4,6 +4,14 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 import { createClient, BusinessRegistration } from "@/lib/supabase"
 import { toast } from "sonner"
 
@@ -75,6 +83,22 @@ export default function RegistrationPage() {
 
       if (updateError) throw updateError
 
+      // Fire-and-forget email notification to the registrant (approved)
+      try {
+        await fetch("/api/registration/notify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: registration.email,
+            businessName: registration.name,
+            founder: registration.founder,
+            status: "approved",
+          }),
+        })
+      } catch (emailError) {
+        console.error("Failed to send approval email:", emailError)
+      }
+
       toast.success("Business approved and published")
       fetchRegistrations()
     } catch (error) {
@@ -90,12 +114,32 @@ export default function RegistrationPage() {
 
     try {
       const supabase = createClient()
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from("business_registrations")
         .update({ status: "rejected" })
         .eq("id", id)
+        .select()
+        .single()
 
       if (error) throw error
+
+      // Fire-and-forget rejection email if we have the row
+      if (data?.email && data?.name) {
+        try {
+          await fetch("/api/registration/notify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: data.email,
+              businessName: data.name,
+              founder: data.founder,
+              status: "rejected",
+            }),
+          })
+        } catch (emailError) {
+          console.error("Failed to send rejection email:", emailError)
+        }
+      }
 
       toast.success("Registration declined")
       fetchRegistrations()
@@ -187,50 +231,46 @@ export default function RegistrationPage() {
         {history.length === 0 ? (
           <div className="text-muted-foreground">No past registrations yet.</div>
         ) : (
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {history.map((registration) => (
-              <Card key={registration.id}>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-xl font-bold flex items-center justify-between">
-                    <span>{registration.name}</span>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Business</TableHead>
+                <TableHead>Founder</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Phone</TableHead>
+                <TableHead>Year</TableHead>
+                <TableHead>Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {history.map((registration) => (
+                <TableRow key={registration.id}>
+                  <TableCell>
+                    <div className="flex flex-col gap-1">
+                      <span className="font-medium">{registration.name}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {registration.category}
+                      </span>
+                    </div>
+                  </TableCell>
+                  <TableCell>{registration.founder}</TableCell>
+                  <TableCell>{registration.email}</TableCell>
+                  <TableCell>{registration.phone || "-"}</TableCell>
+                  <TableCell>{registration.year || "-"}</TableCell>
+                  <TableCell>
                     <Badge
                       variant={
                         registration.status === "approved" ? "default" : "secondary"
                       }
+                      className="capitalize"
                     >
                       {registration.status}
                     </Badge>
-                  </CardTitle>
-                  {registration.category && (
-                    <Badge className="mt-1 w-fit">{registration.category}</Badge>
-                  )}
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <p className="text-sm">
-                    <strong>Founder:</strong> {registration.founder}
-                  </p>
-                  <p className="text-sm">
-                    <strong>Email:</strong> {registration.email}
-                  </p>
-                  {registration.phone && (
-                    <p className="text-sm">
-                      <strong>Phone:</strong> {registration.phone}
-                    </p>
-                  )}
-                  {registration.year && (
-                    <p className="text-sm">
-                      <strong>Year Group:</strong> {registration.year}
-                    </p>
-                  )}
-                  {registration.description && (
-                    <p className="text-sm text-muted-foreground line-clamp-3">
-                      {registration.description}
-                    </p>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         )}
       </section>
     </div>
