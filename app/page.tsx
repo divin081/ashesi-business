@@ -7,6 +7,9 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 import { createClient } from "@/lib/supabase"
 import { toast } from "sonner"
 import { Business } from "@/lib/supabase"
@@ -18,6 +21,29 @@ export default function HomePage() {
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(null)
   const [businesses, setBusinesses] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [registration, setRegistration] = useState({
+    name: "",
+    category: "",
+    year: "",
+    founder: "",
+    email: "",
+    phone: "",
+    education: "",
+    location: "",
+    founded: "",
+    stage: "",
+    team_size: "",
+    achievements: "",
+    description: "",
+    image_url: "",
+    social_media: {
+      website: "",
+      instagram: "",
+      linkedin: "",
+    },
+  })
 
   const fetchBusinesses = async () => {
     setIsLoading(true)
@@ -41,6 +67,74 @@ export default function HomePage() {
   useEffect(() => {
     fetchBusinesses()
   }, [])
+
+  const handleRegistrationSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!registration.email.includes("@ashesi.edu")) {
+      toast.error("Please use your @ashesi.edu email address")
+      return
+    }
+
+    setIsSubmitting(true)
+    try {
+      const supabase = createClient()
+      const { error } = await supabase.from("business_registrations").insert([
+        {
+          name: registration.name,
+          category: registration.category,
+          year: registration.year,
+          founder: registration.founder,
+          email: registration.email,
+          phone: registration.phone,
+          education: registration.education,
+          location: registration.location,
+          founded: registration.founded,
+          stage: registration.stage,
+          team_size: registration.team_size,
+          achievements: registration.achievements,
+          description: registration.description,
+          image_url: registration.image_url,
+          social_media: {
+            website: registration.social_media.website || null,
+            instagram: registration.social_media.instagram || null,
+            linkedin: registration.social_media.linkedin || null,
+          },
+        },
+      ])
+
+      if (error) throw error
+
+      toast.success("Registration submitted! The committee will review your business soon.")
+      setIsRegisterOpen(false)
+      setRegistration({
+        name: "",
+        category: "",
+        year: "",
+        founder: "",
+        email: "",
+        phone: "",
+        education: "",
+        location: "",
+        founded: "",
+        stage: "",
+        team_size: "",
+        achievements: "",
+        description: "",
+        image_url: "",
+        social_media: {
+          website: "",
+          instagram: "",
+          linkedin: "",
+        },
+      })
+    } catch (error) {
+      console.error("Error submitting registration:", error)
+      toast.error("Failed to submit registration")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   //if (isLoading) {
    // return <div>Loading...</div>
@@ -106,7 +200,9 @@ export default function HomePage() {
                 Join our growing ecosystem of student entrepreneurs and access funding, mentorship, and resources to help your business thrive.
               </p>
               <div className="flex flex-col gap-2 min-[400px]:flex-row ">
-                <Button size="lg">Register Now</Button>
+                <Button size="lg" onClick={() => setIsRegisterOpen(true)}>
+                  Register Now
+                </Button>
               </div>
             </div>
             <div className="relative aspect-video overflow-hidden rounded-xl p-1">
@@ -123,6 +219,195 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Business registration dialog */}
+      <Dialog open={isRegisterOpen} onOpenChange={setIsRegisterOpen}>
+        <DialogContent className="max-w-[425px] max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Register Your Business</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleRegistrationSubmit} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="reg-name">Business Name</Label>
+                <Input
+                  id="reg-name"
+                  value={registration.name}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, name: e.target.value }))}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-category">Category</Label>
+                <Input
+                  id="reg-category"
+                  value={registration.category}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, category: e.target.value }))}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-year">Year Group</Label>
+                <Input
+                  id="reg-year"
+                  type="number"
+                  value={registration.year}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, year: e.target.value }))}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-founder">Founder</Label>
+                <Input
+                  id="reg-founder"
+                  value={registration.founder}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, founder: e.target.value }))}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-email">Ashesi Email</Label>
+                <Input
+                  id="reg-email"
+                  type="email"
+                  value={registration.email}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, email: e.target.value }))}
+                  required
+                  placeholder="you@ashesi.edu.gh"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-phone">Phone</Label>
+                <Input
+                  id="reg-phone"
+                  type="tel"
+                  value={registration.phone}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, phone: e.target.value }))}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-education">Education</Label>
+                <Input
+                  id="reg-education"
+                  value={registration.education}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, education: e.target.value }))}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-location">Location</Label>
+                <Input
+                  id="reg-location"
+                  value={registration.location}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, location: e.target.value }))}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-founded">Founded (Year)</Label>
+                <Input
+                  id="reg-founded"
+                  value={registration.founded}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, founded: e.target.value }))}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-stage">Business Stage</Label>
+                <Input
+                  id="reg-stage"
+                  value={registration.stage}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, stage: e.target.value }))}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-team-size">Team Size</Label>
+                <Input
+                  id="reg-team-size"
+                  value={registration.team_size}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, team_size: e.target.value }))}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-achievements">Achievements</Label>
+                <Input
+                  id="reg-achievements"
+                  value={registration.achievements}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, achievements: e.target.value }))}
+                />
+              </div>
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="reg-image-url">Image URL</Label>
+                <Input
+                  id="reg-image-url"
+                  type="url"
+                  value={registration.image_url}
+                  onChange={(e) => setRegistration((prev) => ({ ...prev, image_url: e.target.value }))}
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="reg-description">Business Description</Label>
+              <Textarea
+                id="reg-description"
+                value={registration.description}
+                onChange={(e) => setRegistration((prev) => ({ ...prev, description: e.target.value }))}
+                required
+              />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="reg-website">Website</Label>
+                <Input
+                  id="reg-website"
+                  type="url"
+                  value={registration.social_media.website}
+                  onChange={(e) =>
+                    setRegistration((prev) => ({
+                      ...prev,
+                      social_media: { ...prev.social_media, website: e.target.value },
+                    }))
+                  }
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-instagram">Instagram</Label>
+                <Input
+                  id="reg-instagram"
+                  type="url"
+                  value={registration.social_media.instagram}
+                  onChange={(e) =>
+                    setRegistration((prev) => ({
+                      ...prev,
+                      social_media: { ...prev.social_media, instagram: e.target.value },
+                    }))
+                  }
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reg-linkedin">LinkedIn</Label>
+                <Input
+                  id="reg-linkedin"
+                  type="url"
+                  value={registration.social_media.linkedin}
+                  onChange={(e) =>
+                    setRegistration((prev) => ({
+                      ...prev,
+                      social_media: { ...prev.social_media, linkedin: e.target.value },
+                    }))
+                  }
+                />
+              </div>
+            </div>
+            <div className="flex justify-end gap-2">
+              <Button type="button" variant="outline" onClick={() => setIsRegisterOpen(false)}>
+                Cancel
+              </Button>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : "Submit"}
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Existing business details dialog */}
       <Dialog open={!!selectedBusiness} onOpenChange={() => setSelectedBusiness(null)}>
         <DialogContent className="h-[85vh] flex flex-col">
           <DialogHeader className="flex-shrink-0">

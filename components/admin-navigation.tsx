@@ -14,6 +14,11 @@ const navigation = [
     icon: LayoutDashboard
   },
   {
+    name: "Registrations",
+    href: "/admin/registration",
+    icon: Settings
+  },
+  {
     name: "Gallery",
     href: "/admin/gallery",
     icon: Image

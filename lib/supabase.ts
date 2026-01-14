@@ -38,6 +38,31 @@ export interface Business {
   created_at: string
 }
 
+export interface BusinessRegistration {
+  id: string
+  name: string
+  category: string | null
+  year: string | null
+  founder: string
+  email: string
+  phone?: string | null
+  education?: string | null
+  location?: string | null
+  founded?: string | null
+  stage?: string | null
+  team_size?: string | null
+  achievements?: string | null
+  description?: string | null
+  image_url?: string | null
+  social_media?: {
+    website?: string | null
+    instagram?: string | null
+    linkedin?: string | null
+  } | null
+  status: "pending" | "approved" | "rejected"
+  created_at: string
+}
+
 export interface CommitteeMember {
   id: string
   name: string
